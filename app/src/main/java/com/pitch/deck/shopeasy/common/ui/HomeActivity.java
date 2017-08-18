@@ -14,19 +14,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.pitch.deck.shopeasy.R;
+import com.pitch.deck.shopeasy.common.constants.ApplicationConstants;
+import com.pitch.deck.shopeasy.common.model.Navigation;
+
+import java.util.List;
 
 public class HomeActivity extends BaseActivity {
 
     private NavigationView mNaviagtionView;
+    private List<Navigation> mNavigationList;
+    private String mDefaultSec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        extractArguments();
         initViews();
         initToolbar();
         initDrawerToggle();
-        initPresenter();
+        initNavigationMenu();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -39,9 +46,17 @@ public class HomeActivity extends BaseActivity {
 
     }
 
-    private void initPresenter() {
-
+    private void initNavigationMenu() {
+        
     }
+
+    private void extractArguments() {
+        if(getIntent() != null && getIntent().getExtras() != null) {
+            mNavigationList = (List<Navigation>) getIntent().getSerializableExtra(ApplicationConstants.BundleKeys.NAVIGATION);
+            mDefaultSec = getIntent().getStringExtra(ApplicationConstants.BundleKeys.DEFAULT_SECTION);
+        }
+    }
+
 
     private void initViews() {
         mToolBar = (Toolbar) findViewById(R.id.toolbar);

@@ -7,5 +7,6 @@ package com.pitch.deck.shopeasy.common.constants;
 public class ApplicationConstants {
     public interface BundleKeys {
         String NAVIGATION = "navigation";
+        String DEFAULT_SECTION = "default_section";
     }
 }
